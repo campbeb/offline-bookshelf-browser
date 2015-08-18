@@ -22,12 +22,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b779ba9c-8054-4340-9dd1-637fcf9d5e0a" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\brian\Documents\GitHub\offline-bookshelf-browser\.idea\libraries\jcsv_1_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\brian\Documents\GitHub\offline-bookshelf-browser\.idea\libraries\support_annotations_22_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\brian\Documents\GitHub\offline-bookshelf-browser\.idea\libraries\support_v4_22_0_0.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookDetailActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookDetailActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/LoginActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="offline-bookshelf-browser.iws" />
@@ -60,17 +58,18 @@
       <file leaf-file-name="BookListActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.94670844">
-              <caret line="655" column="0" selection-start-line="655" selection-start-column="0" selection-end-line="655" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.2523511">
+              <caret line="453" column="0" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#2177#2186#0" expanded="true" />
                 <element signature="e#3167#3202#0" expanded="true" />
-                <element signature="e#7479#7509#0" expanded="true" />
-                <element signature="e#27359#27378#0" expanded="true" />
-                <element signature="e#27979#27980#0" expanded="true" />
-                <element signature="e#28031#28032#0" expanded="true" />
-                <element signature="e#28078#28079#0" expanded="true" />
-                <element signature="e#28113#28114#0" expanded="true" />
+                <element signature="e#7456#7486#0" expanded="true" />
+                <element signature="e#27463#27482#0" expanded="true" />
+                <element signature="e#28133#28134#0" expanded="true" />
+                <element signature="e#28185#28186#0" expanded="true" />
+                <element signature="e#28232#28233#0" expanded="true" />
+                <element signature="e#28267#28268#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,8 +79,21 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookDetailActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookDetailActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="198" column="17" selection-start-line="198" selection-start-column="14" selection-end-line="198" selection-end-column="17" />
+              <folding>
+                <element signature="e#4383#4921#0" expanded="true" />
+                <element signature="e#4920#4921#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1513,6 +1525,8 @@
       <list>
         <option value="$PROJECT_DIR$/local.properties" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookDetailActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookListActivity.java" />
       </list>
     </option>
@@ -1581,13 +1595,53 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="offline-bookshelf-browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="offlinebookshelfbrowser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="offline-bookshelf-browser" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
@@ -1845,7 +1899,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="32" />
+      <option name="time" value="34" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1863,14 +1917,15 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#2177#2186#0" expanded="true" />
             <element signature="e#3167#3202#0" expanded="true" />
-            <element signature="e#7479#7509#0" expanded="true" />
-            <element signature="e#27359#27378#0" expanded="true" />
-            <element signature="e#27979#27980#0" expanded="true" />
-            <element signature="e#28031#28032#0" expanded="true" />
-            <element signature="e#28078#28079#0" expanded="true" />
-            <element signature="e#28113#28114#0" expanded="true" />
+            <element signature="e#7456#7486#0" expanded="true" />
+            <element signature="e#27463#27482#0" expanded="true" />
+            <element signature="e#28133#28134#0" expanded="true" />
+            <element signature="e#28185#28186#0" expanded="true" />
+            <element signature="e#28232#28233#0" expanded="true" />
+            <element signature="e#28267#28268#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2058,14 +2113,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-22/android/os/AsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33263597">
@@ -2098,19 +2145,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.740741">
+          <caret line="26" column="49" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="198" column="17" selection-start-line="198" selection-start-column="14" selection-end-line="198" selection-end-column="17" />
+          <folding>
+            <element signature="e#4383#4921#0" expanded="true" />
+            <element signature="e#4920#4921#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.94670844">
-          <caret line="655" column="0" selection-start-line="655" selection-start-column="0" selection-end-line="655" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.2523511">
+          <caret line="453" column="0" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#2177#2186#0" expanded="true" />
             <element signature="e#3167#3202#0" expanded="true" />
-            <element signature="e#7479#7509#0" expanded="true" />
-            <element signature="e#27359#27378#0" expanded="true" />
-            <element signature="e#27979#27980#0" expanded="true" />
-            <element signature="e#28031#28032#0" expanded="true" />
-            <element signature="e#28078#28079#0" expanded="true" />
-            <element signature="e#28113#28114#0" expanded="true" />
+            <element signature="e#7456#7486#0" expanded="true" />
+            <element signature="e#27463#27482#0" expanded="true" />
+            <element signature="e#28133#28134#0" expanded="true" />
+            <element signature="e#28185#28186#0" expanded="true" />
+            <element signature="e#28232#28233#0" expanded="true" />
+            <element signature="e#28267#28268#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -155,7 +155,7 @@ public class BookListActivity extends ListActivity {
         super.onResume();
         String METHOD = ".onResume()"; 
         
-        if (!(currentSortOrder == sharedPref.getString("sortOrder", "_id"))) {
+        if (!(currentSortOrder.equalsIgnoreCase(sharedPref.getString("sortOrder", "_id")))) {
             startActivity(new Intent(this, BookListActivity.class));
             finish();
         }
@@ -178,8 +178,6 @@ public class BookListActivity extends ListActivity {
             if (testSearchHandler.getIds().size() == 0) {
                 Intent in = new Intent(this, LoginActivity.class);
                 startActivity(in);
-            } else {
-                
             }
         }
         
@@ -226,12 +224,13 @@ public class BookListActivity extends ListActivity {
         }
 
 //        logger.log(TAG, "Creating CSVReader...");
-        try {
-            inputStreamReader = new InputStreamReader(inputStream, "utf-16");
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
+        if (inputStream != null) {
+            try {
+                inputStreamReader = new InputStreamReader(inputStream, "utf-16");
+            } catch (UnsupportedEncodingException e1) {
+                e1.printStackTrace();
+            }
         }
-        
         CSVReader<String[]> csvReader = new CSVReaderBuilder<String[]>(
                 inputStreamReader)
                 .strategy(new CSVStrategy('\t', '\b', '#', true, true))
@@ -291,6 +290,7 @@ public class BookListActivity extends ListActivity {
                 for (int i = 0; i < csvData.size(); i++) {
                     String[] csvRow = csvData.get(i);
                     String[] csvRowShort = new String[csvRow.length - 1];
+                    //TODO: Is this just removing tab from end of line?
                     for (int j = 0; j < (csvRowShort.length); j++) {
                         csvRowShort[j] = csvRow[j];
                     }
@@ -453,6 +453,7 @@ public class BookListActivity extends ListActivity {
           // handle scan result
             String potentialISBN = scanResult.getContents();
             String searchString = "";
+
             if (potentialISBN.length() > 10) {
                 searchString = potentialISBN.subSequence(potentialISBN.length() - 10, potentialISBN.length() - 1).toString();
             } else {
@@ -500,7 +501,7 @@ public class BookListActivity extends ListActivity {
         prefsEdit = sharedPref.edit();
         String s = SimpleDateFormat.getDateTimeInstance().format(new Date());
         prefsEdit.putString("last_download_summary", "Most recent: " + s);
-        prefsEdit.commit();
+        prefsEdit.apply();
     }
     
     private class LTLoginDownload extends AsyncTask<Boolean, Integer, String> {
@@ -531,7 +532,7 @@ public class BookListActivity extends ListActivity {
                    prefsEdit = sharedPref.edit();
                    prefsEdit.putString("lt_username", "");
                    prefsEdit.putString("lt_password", "");
-                   prefsEdit.commit();
+                   prefsEdit.apply();
                }
            } else if (progUpdate[0] == PROGRESS_SUCCESS) {
                dialog.setMessage("Successful! Let's import your books.");
@@ -695,8 +696,9 @@ public class BookListActivity extends ListActivity {
             inflater = LayoutInflater.from(context);
             //Log.i(TAG + METHOD, "performance_track BookListAdapter_tag1");
             
-            for (int i = 0; i < columnNames.length; i++) {
-                columns.add(searchHandler.getColumnArray(columnNames[i]));
+//            for (int i = 0; i < columnNames.length; i++) {
+            for (String columnName : columnNames) {
+                columns.add(searchHandler.getColumnArray(columnName));
             }
             //Log.i(TAG + METHOD, "performance_track BookListAdapter_tag2");
         }
