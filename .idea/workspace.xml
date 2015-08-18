@@ -21,13 +21,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b779ba9c-8054-4340-9dd1-637fcf9d5e0a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookDetailActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookDetailActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/BookListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/kinverarity/offlinebookshelfbrowser/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="b779ba9c-8054-4340-9dd1-637fcf9d5e0a" name="Default" comment="" />
     <ignored path="offline-bookshelf-browser.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
