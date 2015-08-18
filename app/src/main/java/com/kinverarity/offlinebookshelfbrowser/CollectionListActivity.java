@@ -15,7 +15,7 @@ import android.widget.ListView;
 import com.kinverarity.offlinebookshelfbrowser.R;
 
 public class CollectionListActivity extends Activity {
-    String TAG = "CollectionListActivity";
+    final String TAG = "CollectionListActivity";
     LogHandler logger;
     SharedPreferences sharedPref;
     ArrayList<String> collections;

@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.kinverarity.offlinebookshelfbrowser.R;
 
 public class ReviewListActivity extends Activity {
-    String TAG = "ReviewListActivity";
+    final String TAG = "ReviewListActivity";
     SharedPreferences sharedPref;
     LogHandler logger;
     
@@ -83,10 +83,7 @@ public class ReviewListActivity extends Activity {
             
             HashMap fields = new HashMap<String, String>();
 
-            String fieldname;
-            
-            for (int i = 0; i < fieldnames.length; i += 1) {
-                fieldname = fieldnames[i];
+            for (String fieldname : fieldnames) {
 //                Log.d(TAG, "Getting content for fieldname=" + fieldname);
                 int index = cursor.getColumnIndex(fieldname);
                 String content = "";

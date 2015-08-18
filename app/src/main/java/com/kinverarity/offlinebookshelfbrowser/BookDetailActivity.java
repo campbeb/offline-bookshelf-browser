@@ -31,7 +31,7 @@ import android.widget.TextView;
 import com.kinverarity.offlinebookshelfbrowser.R;
 
 public class BookDetailActivity extends Activity {
-    String TAG = "BookDetailActivity";
+    final String TAG = "BookDetailActivity";
     SharedPreferences sharedPref;
     LogHandler logger;
     String id;
@@ -85,7 +85,7 @@ public class BookDetailActivity extends Activity {
         String title = fields.get("title").trim().toLowerCase()
                 .replace(' ', '_');
         ISBN = ISBN.trim();
-        String URL = "";
+        String URL;
         if (ISBN.length() > 0) {
             URL = "http://www.librarything.com/isbn/" + ISBN;
         } else {

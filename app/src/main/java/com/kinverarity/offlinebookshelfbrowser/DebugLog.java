@@ -34,7 +34,7 @@ import android.widget.TextView;
 import com.kinverarity.offlinebookshelfbrowser.R;
 
 public class DebugLog extends Activity {
-    String TAG = "DebugLog";
+    final String TAG = "DebugLog";
     SharedPreferences sharedPref;
     LogHandler logger;
     

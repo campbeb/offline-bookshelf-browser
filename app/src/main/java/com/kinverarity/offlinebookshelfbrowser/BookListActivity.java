@@ -49,7 +49,7 @@ import com.googlecode.jcsv.reader.CSVReader;
 import com.googlecode.jcsv.reader.internal.CSVReaderBuilder;
 
 public class BookListActivity extends ListActivity {
-    String TAG = "BookListActivity";
+    final String TAG = "BookListActivity";
     LogHandler logger;
     Intent intent;
     String MESSAGE_TABLE_NAME = "com.kinverarity.offlinebookshelfbrowser.TABLE_NAME";
@@ -58,9 +58,9 @@ public class BookListActivity extends ListActivity {
     int RESULT_TAG_SELECT = 1;
     int RESULT_COLLECTION_SELECT = 2;
     
-    int PROGRESS_LOGGED_IN = 3;
-    int PROGRESS_SUCCESS = 4;
-    int PROGRESS_LOGIN_FAIL = 5;
+    final int PROGRESS_LOGGED_IN = 3;
+    final int PROGRESS_SUCCESS = 4;
+    final int PROGRESS_LOGIN_FAIL = 5;
 
     Cursor cursor;
     ArrayList<Integer> _ids = new ArrayList<Integer>();
@@ -384,7 +384,7 @@ public class BookListActivity extends ListActivity {
             this.onSearchRequested();
             return true;
         case R.id.menuDelete:
-            AlertDialog dialog = new AlertDialog.Builder(this)
+            new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Delete books")
                     .setMessage(
@@ -452,7 +452,7 @@ public class BookListActivity extends ListActivity {
         if (scanResult != null) {
           // handle scan result
             String potentialISBN = scanResult.getContents();
-            String searchString = "";
+            String searchString;
 
             if (potentialISBN.length() > 10) {
                 searchString = potentialISBN.subSequence(potentialISBN.length() - 10, potentialISBN.length() - 1).toString();
@@ -572,8 +572,6 @@ public class BookListActivity extends ListActivity {
                 wr.flush();
                 wr.close();
 
-                int responseCode = urlConnection.getResponseCode();
-
                 // follow redirect after successful login
                 if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
                     urlConnection.disconnect();
@@ -654,7 +652,7 @@ public class BookListActivity extends ListActivity {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
-                String nextLine = "";
+                String nextLine;
                 while ((nextLine = reader.readLine()) != null) {
                     sb.append(nextLine);
                 }

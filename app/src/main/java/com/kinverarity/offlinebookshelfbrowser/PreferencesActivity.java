@@ -30,10 +30,10 @@ public class PreferencesActivity extends PreferenceActivity  {
         String versionNumber = pInfo.versionName;
         int versionCode = pInfo.versionCode;
         
-        Preference prefAboutVersion = (Preference) findPreference("about_version");
+        Preference prefAboutVersion = findPreference("about_version");
         prefAboutVersion.setTitle(getString(R.string.preferences_ui_version) + " " + versionNumber + "vc" + versionCode);
         
-        Preference prefLastDownloaded = (Preference) findPreference("last_download");
+        Preference prefLastDownloaded = findPreference("last_download");
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         prefLastDownloaded.setSummary(sharedPref.getString("last_download_summary", ""));
         
@@ -52,7 +52,7 @@ public class PreferencesActivity extends PreferenceActivity  {
                 break;
             }
         }
-        Preference prefSortOrder = (Preference) findPreference("sortOrder");
+        Preference prefSortOrder = findPreference("sortOrder");
         prefSortOrder.setSummary("Currently sorted by: " + pretty_sort_order);
     }
 
