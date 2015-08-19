@@ -34,7 +34,7 @@ import android.widget.TextView;
 import com.kinverarity.offlinebookshelfbrowser.R;
 
 public class DebugLog extends Activity {
-    String TAG = "DebugLog";
+    final String TAG = "DebugLog";
     SharedPreferences sharedPref;
     LogHandler logger;
     
@@ -74,7 +74,7 @@ public class DebugLog extends Activity {
             public void onClick(View arg0) {
                 SharedPreferences.Editor e = sharedPref.edit();
                 e.remove("debug_log");
-                e.commit();
+                e.apply();
                 finish();
             }
         });

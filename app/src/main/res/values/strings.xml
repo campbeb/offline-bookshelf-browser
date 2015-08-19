@@ -12,7 +12,7 @@
     <string name="title_section2">Firstname Lastname</string>
     <string name="title_section1">Lastname, firstname</string>
     <string name="search_label">Offline Bookshelf Browser</string>
-    <string name="search_hint">Search books...</string>
+    <string name="search_hint">Search books…</string>
     <string name="login_ui_title">Enter your LibraryThing login credentials to download your library</string>
     <string name="login_ui_lt_username_hint">Username</string>
     <string name="login_ui_lt_password_hint">Password</string>

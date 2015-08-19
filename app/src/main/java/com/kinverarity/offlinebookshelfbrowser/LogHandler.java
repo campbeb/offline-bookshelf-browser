@@ -16,7 +16,7 @@ public class LogHandler  {
         prefsEdit = sharedPref.edit();
         String log = sharedPref.getString("debug_log", "");
         prefsEdit.putString("debug_log", log);
-        prefsEdit.commit();
+        prefsEdit.apply();
     }
     
     public void log (String tag, String message) {

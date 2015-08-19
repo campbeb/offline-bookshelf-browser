@@ -5,11 +5,11 @@ import android.text.Spanned;
 
 public final class FormatText {
 
-    public final static Spanned asHtml (String s) {
+    public static Spanned asHtml (String s) {
         return Html.fromHtml(fix(s));
     }
     
-    public final static String fix (String s) {
+    public static String fix (String s) {
         if (s == null)
             s = "";
         s = s.replace("[return]", "\n");

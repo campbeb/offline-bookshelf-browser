@@ -24,8 +24,7 @@ public class LoginActivity extends Activity {
     CheckBox rememberCredentials;
     
     private SharedPreferences sharedPref;
-    private SharedPreferences.Editor prefsEdit;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String METHOD = ".onCreate()";
@@ -74,17 +73,17 @@ public class LoginActivity extends Activity {
     
     public void downloadLibrary (View view) {
         String METHOD = ":downloadLibrary(): ";
-        Log.d(TAG + METHOD, "start");
+        Log.d(TAG, METHOD + "start");
         
         String LTUsername = usernameBox.getText().toString();
         String LTPassword = passwordBox.getText().toString();
-        
-        prefsEdit = sharedPref.edit();
+
+        SharedPreferences.Editor prefsEdit = sharedPref.edit();
         prefsEdit.putBoolean("lt_remember_credentials", rememberCredentials.isChecked());
-        Log.d(TAG + METHOD, "Credentials is checked or not?" + rememberCredentials.isChecked());
+        Log.d(TAG,  METHOD + "Credentials is checked or not?" + rememberCredentials.isChecked());
         prefsEdit.putString("lt_username", LTUsername);
         prefsEdit.putString("lt_password", LTPassword);
-        prefsEdit.commit();
+        prefsEdit.apply();
         
         Intent in = new Intent(this, BookListActivity.class);
         in.putExtra("downloadBooks", true);

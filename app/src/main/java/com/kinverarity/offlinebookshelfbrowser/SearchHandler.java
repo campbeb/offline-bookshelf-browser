@@ -10,7 +10,7 @@ import android.database.Cursor;
 import android.preference.PreferenceManager;
 
 public class SearchHandler {
-    String TAG = "SearchHandler";
+    final String TAG = "SearchHandler";
     SharedPreferences sharedPref;
     LogHandler logger;
     
@@ -54,10 +54,9 @@ public class SearchHandler {
         _ids = new ArrayList<Integer> ();
         logger.log(TAG + METHOD, "ids.length=" + ids.length);
         if (ids.length > 0) {
-            for (int i = 0; i < ids.length; i++) {
-                if (ids[i].length() > 0) {
-                    int id = Integer.valueOf(ids[i]);
-                    _ids.add(id);
+            for (String id : ids) {
+                if (id.length() > 0) {
+                    _ids.add(Integer.valueOf(id));
                 }
             }
         }
@@ -137,7 +136,6 @@ public class SearchHandler {
         String METHOD = ".getFields(_id=" + _id + "): ";
         logger.log(TAG + METHOD, "start (searchHandler._ids.size()=" + _ids.size() + ")");
         
-        String fieldname;
         String[] fieldnames = { "_id", "book_id", "title", "author1",
                 "author2", "author_other", "publication", "date", "ISBNs",
                 "series", "source", "lang1", "lang2", "lang_orig", "LCC",
@@ -146,14 +144,13 @@ public class SearchHandler {
                 "review", "summary", "comments", "comments_private", "copies",
                 "encoding" };
         HashMap<String, String> fields = new HashMap<String, String>();
-        for (int i = 0; i < fieldnames.length; i += 1)
-            fields.put(fieldnames[i], "");
+        for (String fieldname : fieldnames)
+            fields.put(fieldname, "");
         Cursor currentCursor = getCursor();
         currentCursor.moveToFirst();
         while (!currentCursor.isAfterLast()) {
             if (currentCursor.getInt(currentCursor.getColumnIndex("_id")) == _id) {
-                for (int i = 0; i < fieldnames.length; i += 1) {
-                    fieldname = fieldnames[i];
+                for (String fieldname : fieldnames) {
                     int index = currentCursor.getColumnIndex(fieldname);
                     String content = "";
                     if (index > -1)
@@ -212,8 +209,8 @@ public class SearchHandler {
             String rawTags = currentCursor.getString(currentCursor.getColumnIndex("tags"));
             String [] tags = rawTags.split(",");
             boolean tagMatch = false;
-            for (int i = 0; i < tags.length; i++) {
-                if (tag.equals(tags[i].trim())) {
+            for (String tag_ : tags) {
+                if (tag.equals(tag_.trim())) {
                     tagMatch = true;
                     break;
                 }
@@ -313,9 +310,8 @@ public class SearchHandler {
 //            logger.log(TAG + METHOD, "cursor.position=" + cursor.getPosition() + " tags=" + itemsStr);
             if (itemsStr.contains(",")) {
                 String[] items = itemsStr.split(",");
-                for (int i = 0; i < items.length; i++) {
-                    String item = items[i].trim();
-                    globalItems.add(item);
+                for (String item : items) {
+                    globalItems.add(item.trim());
                 }
             }
             cursor.moveToNext();

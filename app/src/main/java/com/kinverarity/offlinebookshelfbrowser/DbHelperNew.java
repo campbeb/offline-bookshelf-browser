@@ -14,7 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 public class DbHelperNew extends SQLiteOpenHelper {
-    String TAG = "DbHelperNew";
+    final String TAG = "DbHelperNew";
     SharedPreferences sharedPref;
     LogHandler logger;
     
@@ -45,7 +45,7 @@ public class DbHelperNew extends SQLiteOpenHelper {
         logger = new LogHandler(sharedPref);
         logger.log(TAG + METHOD, "Start");
         
-        DATABASE_PATH = "/data/data/" + contextLocal.getPackageName()
+        DATABASE_PATH = contextLocal.getFilesDir().getPath() + "data/" + contextLocal.getPackageName()
                 + "/databases/";
         context = contextLocal;
         sharedPref = PreferenceManager.getDefaultSharedPreferences(contextLocal
@@ -150,7 +150,7 @@ public class DbHelperNew extends SQLiteOpenHelper {
                     cursor.moveToFirst();
                 }
                 logger.log(TAG + METHOD, "sql=" + sql);
-                logger.log(TAG + METHOD, "returning a Cursor with " + cursor.getCount() + " from a request for " + ids.size() + " ids");
+                logger.log(TAG + METHOD, "returning a Cursor with " + (cursor != null ? cursor.getCount(): "null cursor") + " from a request for " + ids.size() + " ids");
                 return cursor;
             } catch (SQLException mSQLException) {
                 logger.log(TAG, "getTestData >>" + mSQLException.toString());
@@ -181,7 +181,7 @@ public class DbHelperNew extends SQLiteOpenHelper {
                 if (cursor != null) {
                     cursor.moveToFirst();
                 }
-                logger.log(TAG + METHOD, "returning a Cursor with " + cursor.getCount() + " from a request for " + ids.size() + " ids");
+                logger.log(TAG + METHOD, "returning a Cursor with " + (cursor != null ? cursor.getCount(): "null cursor") + " from a request for " + ids.size() + " ids");
                 //Log.i(TAG + METHOD, "performance_track start_SQL_returning_cursor");
                 return cursor;
             } catch (SQLException mSQLException) {
@@ -206,6 +206,7 @@ public class DbHelperNew extends SQLiteOpenHelper {
             _ids.add(cursor.getInt(cursor.getColumnIndex("_id")));
             cursor.moveToNext();
         }
+        cursor.close();
         logger.log(TAG + METHOD, "returning " + _ids.size() + " ids");
         return _ids;
     }
@@ -234,8 +235,7 @@ public class DbHelperNew extends SQLiteOpenHelper {
         logger.log(TAG + METHOD, "start");
         
         String sql = "SELECT * FROM " + TABLE + " WHERE _id='" + id + "'";
-        Cursor cursor = Db.rawQuery(sql, null);
-        return cursor;
+        return Db.rawQuery(sql, null);
     }
 
 }

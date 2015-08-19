@@ -15,7 +15,7 @@ import android.widget.ListView;
 import com.kinverarity.offlinebookshelfbrowser.R;
 
 public class TagListActivity extends Activity {
-    String TAG = "TagListActivity";
+    final String TAG = "TagListActivity";
     SharedPreferences sharedPref;
     LogHandler logger;
     

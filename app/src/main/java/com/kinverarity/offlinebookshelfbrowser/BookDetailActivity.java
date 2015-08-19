@@ -31,7 +31,7 @@ import android.widget.TextView;
 import com.kinverarity.offlinebookshelfbrowser.R;
 
 public class BookDetailActivity extends Activity {
-    String TAG = "BookDetailActivity";
+    final String TAG = "BkDetailAct";
     SharedPreferences sharedPref;
     LogHandler logger;
     String id;
@@ -59,7 +59,6 @@ public class BookDetailActivity extends Activity {
 
         fields = new HashMap<String, String>();
 
-        String fieldname;
         String[] fieldnames = { "_id", "book_id", "title", "author1",
                 "author2", "author_other", "publication", "date", "ISBNs",
                 "series", "source", "lang1", "lang2", "lang_orig", "LCC",
@@ -67,8 +66,7 @@ public class BookDetailActivity extends Activity {
                 "date_started", "date_ended", "stars", "collections", "tags",
                 "review", "summary", "comments", "comments_private", "copies",
                 "encoding" };
-        for (int i = 0; i < fieldnames.length; i += 1) {
-            fieldname = fieldnames[i];
+        for (String fieldname : fieldnames) {
 //            Log.d(TAG, "Getting content for fieldname=" + fieldname);
             int index = cursor.getColumnIndex(fieldname);
             String content = "";
@@ -87,7 +85,7 @@ public class BookDetailActivity extends Activity {
         String title = fields.get("title").trim().toLowerCase()
                 .replace(' ', '_');
         ISBN = ISBN.trim();
-        String URL = "";
+        String URL;
         if (ISBN.length() > 0) {
             URL = "http://www.librarything.com/isbn/" + ISBN;
         } else {
@@ -106,7 +104,7 @@ public class BookDetailActivity extends Activity {
         String author;
         String author1 = fields.get("author1");
         String author2 = fields.get("author2");
-        if (author2 == "") {
+        if (author2.isEmpty()) {
             author = author1;
         } else {
             author = author2;
@@ -131,7 +129,7 @@ public class BookDetailActivity extends Activity {
         TextView publication = (TextView) findViewById(R.id.book_detail_publication);
         String publicationDetails = fields.get("publication");
         if (publicationDetails.length() == 0) {
-            publicationDetails = getString(R.string.details_ui_publication_preface) + fields.get("date");
+            publicationDetails = "Published in: " + fields.get("date");
         }
         if (ISBN.length() > 0) {
             if (publicationDetails.length() > 0) {

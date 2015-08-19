@@ -33,7 +33,7 @@ import android.widget.TextView;
 import com.kinverarity.offlinebookshelfbrowser.R;
 
 public class CommentListActivity extends Activity {
-    String TAG = "CommentListActivity";
+    final String TAG = "ComListAct";
     SharedPreferences sharedPref;
     LogHandler logger;
     
@@ -76,8 +76,8 @@ public class CommentListActivity extends Activity {
         public CommentListAdapter (Context context, String[] columnNames) {
             this.context = context;
             inflater = LayoutInflater.from(context);
-            for (int i = 0; i < columnNames.length; i++) {
-                columns.add(searchHandler.getColumnArray(columnNames[i]));
+            for (String columnName : columnNames) {
+                columns.add(searchHandler.getColumnArray(columnName));
             }
         }
         
@@ -96,10 +96,10 @@ public class CommentListActivity extends Activity {
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder = null;
+            ViewHolder holder;
             if (convertView == null) {
                 holder = new ViewHolder();
-                convertView = inflater.inflate(R.layout.commentlist_item, null);
+                convertView = inflater.inflate(R.layout.commentlist_item, parent, false);
                 holder.title = (TextView) convertView.findViewById(R.id.commentlist_item_title);
                 holder.title.setTag(searchHandler.getId(position).toString());
                 holder.author = (TextView) convertView.findViewById(R.id.commentlist_item_author);
@@ -174,10 +174,7 @@ public class CommentListActivity extends Activity {
             
             HashMap fields = new HashMap<String, String>();
 
-            String fieldname;
-            
-            for (int i = 0; i < fieldnames.length; i += 1) {
-                fieldname = fieldnames[i];
+            for (String fieldname : fieldnames) {
 //                Log.d(TAG, "Getting content for fieldname=" + fieldname);
                 int index = cursor.getColumnIndex(fieldname);
                 String content = "";
