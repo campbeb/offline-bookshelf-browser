@@ -716,7 +716,7 @@ public class BookListActivity extends ListActivity {
 
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = inflater.inflate(R.layout.book_list_item, null);
+                convertView = inflater.inflate(R.layout.book_list_item, parent, false);
             }
             TextView titleView = (TextView) convertView.findViewById(R.id.book_list_item_title);
             TextView authorView = (TextView) convertView.findViewById(R.id.book_list_item_subtitle);

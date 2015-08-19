@@ -33,7 +33,7 @@ import android.widget.TextView;
 import com.kinverarity.offlinebookshelfbrowser.R;
 
 public class CommentListActivity extends Activity {
-    final String TAG = "CommentListActivity";
+    final String TAG = "ComListAct";
     SharedPreferences sharedPref;
     LogHandler logger;
     
@@ -99,7 +99,7 @@ public class CommentListActivity extends Activity {
             ViewHolder holder;
             if (convertView == null) {
                 holder = new ViewHolder();
-                convertView = inflater.inflate(R.layout.commentlist_item, null);
+                convertView = inflater.inflate(R.layout.commentlist_item, parent, false);
                 holder.title = (TextView) convertView.findViewById(R.id.commentlist_item_title);
                 holder.title.setTag(searchHandler.getId(position).toString());
                 holder.author = (TextView) convertView.findViewById(R.id.commentlist_item_author);

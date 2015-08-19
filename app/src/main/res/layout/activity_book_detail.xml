@@ -38,6 +38,8 @@
             android:id="@+id/book_detail_collections_container"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:orientation="vertical" >
         </LinearLayout>
 
@@ -45,6 +47,8 @@
             android:id="@+id/book_detail_tags_container"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:orientation="vertical" >
         </LinearLayout>
 
@@ -53,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:textColor="#dddddd"
             android:text="DDC: " />
         
@@ -61,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:textColor="#dddddd"
             android:text="LCC: " />
         
@@ -69,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:textColor="#dddddd"
             android:text="@string/details_ui_date_entered_preface" />
         
@@ -77,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:textColor="#dddddd"
             android:text="@string/details_ui_date_acquired_preface" />
         
@@ -85,6 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:textColor="#dddddd"
             android:text="@string/details_ui_date_started_preface" />
         
@@ -93,6 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:textColor="#dddddd"
             android:text="@string/details_ui_date_ended_preface" />
         
@@ -101,6 +111,8 @@
             style="?android:attr/ratingBarStyleIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:numStars="5" />
 
         <TextView

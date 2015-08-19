@@ -45,7 +45,7 @@ public class DbHelperNew extends SQLiteOpenHelper {
         logger = new LogHandler(sharedPref);
         logger.log(TAG + METHOD, "Start");
         
-        DATABASE_PATH = "/data/data/" + contextLocal.getPackageName()
+        DATABASE_PATH = contextLocal.getFilesDir().getPath() + "data/" + contextLocal.getPackageName()
                 + "/databases/";
         context = contextLocal;
         sharedPref = PreferenceManager.getDefaultSharedPreferences(contextLocal

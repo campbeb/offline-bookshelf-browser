@@ -14,16 +14,21 @@
             style="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:text="@string/details_ui_title_dummy" />
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
         <TextView
             android:id="@+id/book_list_item_subtitle"
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
             android:text="@string/details_ui_authors_dummy" />
 
         <TextView
@@ -42,8 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
-        
-        
-        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

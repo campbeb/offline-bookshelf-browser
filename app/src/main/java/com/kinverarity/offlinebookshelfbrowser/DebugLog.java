@@ -74,7 +74,7 @@ public class DebugLog extends Activity {
             public void onClick(View arg0) {
                 SharedPreferences.Editor e = sharedPref.edit();
                 e.remove("debug_log");
-                e.commit();
+                e.apply();
                 finish();
             }
         });

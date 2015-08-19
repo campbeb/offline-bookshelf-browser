@@ -83,7 +83,7 @@ public class LoginActivity extends Activity {
         Log.d(TAG,  METHOD + "Credentials is checked or not?" + rememberCredentials.isChecked());
         prefsEdit.putString("lt_username", LTUsername);
         prefsEdit.putString("lt_password", LTPassword);
-        prefsEdit.commit();
+        prefsEdit.apply();
         
         Intent in = new Intent(this, BookListActivity.class);
         in.putExtra("downloadBooks", true);

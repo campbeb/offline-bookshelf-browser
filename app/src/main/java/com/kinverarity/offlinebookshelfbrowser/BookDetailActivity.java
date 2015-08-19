@@ -31,7 +31,7 @@ import android.widget.TextView;
 import com.kinverarity.offlinebookshelfbrowser.R;
 
 public class BookDetailActivity extends Activity {
-    final String TAG = "BookDetailActivity";
+    final String TAG = "BkDetailAct";
     SharedPreferences sharedPref;
     LogHandler logger;
     String id;
