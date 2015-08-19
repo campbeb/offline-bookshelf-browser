@@ -12,6 +12,7 @@ import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -595,9 +596,18 @@ public class BookListActivity extends ListActivity {
                 }
                 rd.close();
                 loginResponseBody = response.toString();
-            } catch (Exception e) {
+
+            } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-                logger.log(TAG + METHOD, "Exception logging in");
+                logger.log(TAG + METHOD, "Illegal encoding logging in:" + e.getMessage());
+                return RESULT_LOGIN_FAIL;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                logger.log(TAG + METHOD, "Bad URL logging in:" + e.getMessage());
+                return RESULT_LOGIN_FAIL;
+            } catch (IOException e) {
+                e.printStackTrace();
+                logger.log(TAG + METHOD, "General IO errror logging in" + e.getMessage());
                 return RESULT_LOGIN_FAIL;
             } finally {
                 if (urlConnection != null)
@@ -630,9 +640,14 @@ public class BookListActivity extends ListActivity {
                 rd.close();
                 downloadResponseBody = response.toString();
             }
-            catch (Exception e) {
+            catch (MalformedURLException e) {
                 e.printStackTrace();
-                logger.log(TAG + METHOD, "Download failed.");
+                logger.log(TAG + METHOD, "Bad URL downloading:" + e.getMessage());
+                return RESULT_DOWNLOAD_FAIL;
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+                logger.log(TAG + METHOD, "General IO error downloading:" + e.getMessage());
                 return RESULT_DOWNLOAD_FAIL;
             }
             finally {
