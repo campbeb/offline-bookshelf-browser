@@ -55,7 +55,7 @@
     <string name="preferences_ui_jcsv">jCSV</string>
     <string name="preferences_ui_jcsv_licence">Apache Licence 2.0</string>
     <string name="preferences_ui_launcher">Launcher icon</string>
-    <string name="preferences_ui_launcher_source">Freepik (http://www.freepik.com)</string>
+    <string name="preferences_ui_launcher_source">Icon made by Freepik (www.freepik.com) from www.flaticon.com</string>
     <string name="prefs_ui_case_sensitive_search_summary_off">Search queries are not case-sensitive</string>
     <string name="prefs_ui_case_sensitive_search_summary_on">Search queries are case-sensitive</string>
     <string name="prefs_ui_case_sensitive_search_title">Case sensitive search</string>
