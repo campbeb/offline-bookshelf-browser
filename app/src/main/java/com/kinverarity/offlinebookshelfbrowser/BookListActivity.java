@@ -62,6 +62,10 @@ public class BookListActivity extends ListActivity {
     final int PROGRESS_SUCCESS = 4;
     final int PROGRESS_LOGIN_FAIL = 5;
 
+    final int RESULT_LOGIN_FAIL = 10;
+    final int RESULT_DOWNLOAD_FAIL = 11;
+    final int RESULT_SUCCESS = 12;
+
     Cursor cursor;
     ArrayList<Integer> _ids = new ArrayList<Integer>();
     ArrayList<Integer> toDeleteIds = new ArrayList<Integer>();
@@ -87,7 +91,8 @@ public class BookListActivity extends ListActivity {
         currentSortOrder = sharedPref.getString("sortOrder", "_id");
 
         // Persistent cookie handler across all URL connections
-        CookieHandler.setDefault( new CookieManager( null, CookiePolicy.ACCEPT_ALL ) );
+        if (CookieHandler.getDefault() == null)
+            CookieHandler.setDefault( new CookieManager( null, CookiePolicy.ACCEPT_ALL ) );
 
         searchHandler = new SearchHandler(this);
         searchHandler.setIds();
@@ -197,7 +202,14 @@ public class BookListActivity extends ListActivity {
     public void downloadBooks() {
         String METHOD = ":downloadBooks(): ";
         logger.log(TAG + METHOD, "start");
-        new LTLoginDownload().execute(null, null, null);
+
+        // if no user name, send to login activity rather than trying to download
+        if (sharedPref.getString("lt_username", "").isEmpty()) {
+            logger.log(TAG + METHOD, "no username");
+            Intent in = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(in);
+        } else
+            new LTLoginDownload().execute(null, null, null);
     }
 
     @SuppressWarnings("unchecked")
@@ -504,11 +516,10 @@ public class BookListActivity extends ListActivity {
         prefsEdit.apply();
     }
     
-    private class LTLoginDownload extends AsyncTask<Boolean, Integer, String> {
+    private class LTLoginDownload extends AsyncTask<Boolean, Integer, Integer> {
         String result;        
         ProgressDialog dialog;
 
-        
         @Override
         protected void onPreExecute() {
             String METHOD = ":LTLoginDownload:onPreExecute(): ";
@@ -536,22 +547,16 @@ public class BookListActivity extends ListActivity {
                }
            } else if (progUpdate[0] == PROGRESS_SUCCESS) {
                dialog.setMessage("Successful! Let's import your books.");
-           } else if (progUpdate[0] == PROGRESS_LOGIN_FAIL) {
-               logger.log(TAG + METHOD, "Login failed.");
-               dialog.setMessage("Login failed.");
-               dialog.dismiss();
-               Intent in = new Intent(getApplicationContext(), LoginActivity.class);
-               startActivity(in);
            }
         }
         
-        protected String doInBackground(Boolean... bools) {
+        protected Integer doInBackground(Boolean... bools) {
             String METHOD = ".LTLoginDownload.doInBackground()";
             logger.log(TAG + METHOD, "start");
             
             String loginResponseBody = "";
-
             HttpURLConnection urlConnection = null;
+
             try {
                 String loginPostContent = URLEncoder.encode("formusername", "UTF-8") + "="
                         + URLEncoder.encode(sharedPref.getString("lt_username", ""), "UTF-8") + "&"
@@ -580,11 +585,8 @@ public class BookListActivity extends ListActivity {
                 }
 
                 //Get Response
-                final String type = urlConnection.getHeaderField("Content-Type");
-                final String charset = type.substring(type.indexOf("charset")+8);
-
                 InputStream is = urlConnection.getInputStream();
-                BufferedReader rd = new BufferedReader(new InputStreamReader(is, charset));
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is, "UTF-8"));
                 String line;
                 StringBuilder response = new StringBuilder();
                 while ((line = rd.readLine()) != null) {
@@ -593,11 +595,11 @@ public class BookListActivity extends ListActivity {
                 }
                 rd.close();
                 loginResponseBody = response.toString();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-            }
-            finally {
+                logger.log(TAG + METHOD, "Exception logging in");
+                return RESULT_LOGIN_FAIL;
+            } finally {
                 if (urlConnection != null)
                     urlConnection.disconnect();
             }
@@ -605,8 +607,7 @@ public class BookListActivity extends ListActivity {
             logger.log(TAG + METHOD, "loginResponseBody=" + loginResponseBody);
             if (!loginResponseBody.contains("Home | LibraryThing")) {
                 logger.log(TAG + METHOD, "Login failed.");
-                this.publishProgress(PROGRESS_LOGIN_FAIL);
-                this.cancel(true);
+                return RESULT_LOGIN_FAIL;
             } else {
                 logger.log(TAG + METHOD, "Login succeeded.");
                 this.publishProgress(PROGRESS_LOGGED_IN);
@@ -618,11 +619,8 @@ public class BookListActivity extends ListActivity {
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setReadTimeout(10000);
 
-                String type = urlConnection.getHeaderField("Content-Type");
-                String charset = type.substring(type.indexOf("charset")+8);
-
                 InputStream is = urlConnection.getInputStream();
-                BufferedReader rd = new BufferedReader(new InputStreamReader(is, charset));
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is, "UTF-16"));
                 String line;
                 StringBuilder response = new StringBuilder();
                 while((line = rd.readLine()) != null) {
@@ -634,6 +632,8 @@ public class BookListActivity extends ListActivity {
             }
             catch (Exception e) {
                 e.printStackTrace();
+                logger.log(TAG + METHOD, "Download failed.");
+                return RESULT_DOWNLOAD_FAIL;
             }
             finally {
                 if (urlConnection != null)
@@ -642,34 +642,37 @@ public class BookListActivity extends ListActivity {
 
             logger.log(TAG + METHOD, "downloadResponseBody=" + downloadResponseBody);
             result = downloadResponseBody;
-            
+
             this.publishProgress(PROGRESS_SUCCESS);
-            return "";
+            return RESULT_SUCCESS;
         }
 
-        private String readStream(InputStream in) {
-            StringBuilder sb = new StringBuilder();
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-                String nextLine;
-                while ((nextLine = reader.readLine()) != null) {
-                    sb.append(nextLine);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return sb.toString();
-        }
-
-        protected void onPostExecute(String r) {
+        protected void onPostExecute(Integer r) {
             String METHOD = ".LTLoginDownload.onPostExecute()";
             logger.log(TAG + METHOD, "start");
-            if (result.length() > 0) {
+
+            if (r == RESULT_SUCCESS) {
                 logger.log(TAG + METHOD, "importing books");
                 importBooksFromDownload(result);
             } else {
-                logger.log(TAG + METHOD, "the download was empty");
+                String msg = "Unknown Failure";
+                if (r == RESULT_LOGIN_FAIL)
+                    msg = "Login Failed";
+                else if (r == RESULT_DOWNLOAD_FAIL)
+                    msg = "Download Failed";
+                logger.log(TAG + METHOD, "msg");
+                dialog.dismiss();
+
+                new AlertDialog.Builder(BookListActivity.this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle(msg)
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent in = new Intent(BookListActivity.this, LoginActivity.class);
+                                startActivity(in);
+                            }})
+                        .show();
             }
         }
 
